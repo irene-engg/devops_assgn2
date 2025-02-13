@@ -14,8 +14,13 @@ app.post('/items', addItem);
 app.put('/items/:id', updateItem);
 app.delete('/items/:id', deleteItem);
 
+// Use environment variable for PORT or default to 3000
+const PORT = process.env.PORT || 3000;
+
 db.init().then(() => {
-    app.listen(3000, () => console.log('Listening on port 3000'));
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
 }).catch((err) => {
     console.error(err);
     process.exit(1);

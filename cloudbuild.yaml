@@ -1,46 +1,7 @@
 steps:
-  # Docker Build
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}', 
-           '.']
-
-  # Docker Push
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 
-           'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}']
-
-  # Deploy to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-    - 'run'
-    - 'deploy'
-    - 'assignment2'
-    - '--image'
-    - 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}'
-    - '--region'
-    - 'us-central1'
-    - '--platform'
-    - 'managed'
-    - '--allow-unauthenticated'
-    - '--port'
-    - '3000'
-    - '--timeout'
-    - '300'  # Set request timeout to 300 seconds
-    - '--set-env-vars'
-    - 'PORT=3000'  # Explicitly set the PORT environment variable
-    - '--cpu'
-    - '1'  # Allocate 1 CPU
-    - '--memory'
-    - '512Mi'  # Allocate 512Mi memory
-    - '--max-instances'
-    - '1'  # Limit to 1 instance for testing
-    - '--min-instances'
-    - '0'  # Allow scaling to zero
-
-images:
-  - 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}'
-
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${COMMIT_SHA}', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${COMMIT_SHA}']
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET

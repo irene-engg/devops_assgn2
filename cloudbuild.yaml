@@ -2,13 +2,13 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/angular-land-438802-e4/firstname-studentid/assignment2:${SHORT_SHA}', 
+           'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}', 
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           'us-central1-docker.pkg.dev/angular-land-438802-e4/firstname-studentid/assignment2:${SHORT_SHA}']
+           'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}']
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -18,7 +18,7 @@ steps:
     - 'deploy'
     - 'assignment2'
     - '--image'
-    - 'us-central1-docker.pkg.dev/angular-land-438802-e4/firstname-studentid/assignment2:${SHORT_SHA}'
+    - 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}'
     - '--region'
     - 'us-central1'
     - '--platform'
@@ -28,7 +28,7 @@ steps:
     - '3000'
 
 images:
-  - 'us-central1-docker.pkg.dev/angular-land-438802-e4/firstname-studentid/assignment2:${SHORT_SHA}'
+  - 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}'
 
 options:
     defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET

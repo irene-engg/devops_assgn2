@@ -17,19 +17,30 @@ app.delete('/items/:id', deleteItem);
 // Use environment variable for PORT or default to 3000
 const PORT = process.env.PORT || 3000;
 
-db.init().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
+// Add logging for database initialization
+console.log('Initializing database...');
+db.init()
+    .then(() => {
+        console.log('Database initialized successfully.');
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    })
+    .catch((err) => {
+        console.error('Failed to initialize database:', err);
+        process.exit(1);
     });
-}).catch((err) => {
-    console.error(err);
-    process.exit(1);
-});
 
+// Graceful shutdown
 const gracefulShutdown = () => {
+    console.log('Shutting down gracefully...');
     db.teardown()
-        .catch(() => {})
-        .then(() => process.exit());
+        .catch((err) => {
+            console.error('Error during teardown:', err);
+        })
+        .finally(() => {
+            process.exit();
+        });
 };
 
 process.on('SIGINT', gracefulShutdown);

@@ -26,9 +26,23 @@ steps:
     - '--allow-unauthenticated'
     - '--port'
     - '3000'
+    - '--timeout'
+    - '300'  # Increase request timeout to 300 seconds
+    - '--startup-timeout'
+    - '300'  # Increase startup timeout to 300 seconds
+    - '--set-env-vars'
+    - 'PORT=3000'  # Explicitly set the PORT environment variable
+    - '--cpu'
+    - '1'  # Allocate 1 CPU
+    - '--memory'
+    - '512Mi'  # Allocate 512Mi memory
+    - '--max-instances'
+    - '1'  # Limit to 1 instance for testing
+    - '--min-instances'
+    - '0'  # Allow scaling to zero
 
 images:
   - 'us-central1-docker.pkg.dev/angular-land-438802-e4/irene-100997763/assignment2:${SHORT_SHA}'
 
 options:
-    defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET

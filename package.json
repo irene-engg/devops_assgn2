@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",                             // Start the application directly
+    "start": "node index.js",                            
     "prettify": "prettier -l --write \"**/*.js\"",
     "test": "jest",
-    "dev": "nodemon --inspect=0.0.0.0:9229 -L src/index.js", // For local development with nodemon
-    "preview": "pnpm run preview -- --host 0.0.0.0 --port 3000" // Assuming you use pnpm for build preview
+    "dev": "nodemon --inspect=0.0.0.0:9229 -L src/index.js", 
+    "preview": "pnpm run preview -- --host 0.0.0.0 --port 3000"
   },
   "dependencies": {
     "express": "^4.18.2",

@@ -17,8 +17,8 @@ app.delete('/items/:id', deleteItem);
 // Use environment variable for PORT or default to 3000
 const PORT = process.env.PORT || 3000;
 
-// Start the server immediately
-app.listen(PORT, () => {
+// Explicitly bind to 0.0.0.0 to ensure external traffic is accepted
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
 

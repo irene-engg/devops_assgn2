@@ -1,20 +1,22 @@
 # Use an official Node.js runtime as a parent image
 FROM node:20
 
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Copy package.json and pnpm-lock.yaml (if applicable)
+COPY package*.json pnpm-lock.yaml ./
+
+# Install dependencies using pnpm
+RUN pnpm install
 
 # Copy the rest of the application
 COPY . .
 
-# Build the application (if needed, e.g., for TypeScript or React)
-# RUN npm run build
-
-# Expose port 3000
+# Expose the port that the app will listen on
 EXPOSE 3000
 
 # Command to run the application using pnpm

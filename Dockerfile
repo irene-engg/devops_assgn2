@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:18
+FROM node:20
 
 # Set the working directory
 WORKDIR /app
@@ -14,8 +14,8 @@ COPY . .
 # Build the application (if needed, e.g., for TypeScript or React)
 # RUN npm run build
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 3000
+EXPOSE 3000
 
 # Command to run the app
 CMD ["npm", "start"]

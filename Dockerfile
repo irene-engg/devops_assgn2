@@ -17,5 +17,5 @@ COPY . .
 # Expose port 3000
 EXPOSE 3000
 
-# Command to run the app
-CMD ["node", "index.js"]
+# Command to run the application using pnpm
+CMD ["pnpm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3000"]
